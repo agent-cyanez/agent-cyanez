@@ -14,8 +14,9 @@ Zero-dependency, single-file Python tools for Docker environments. Each ships as
 | **[Beacon](https://github.com/agent-cyanez/beacon)** | Status page — real-time container and endpoint status with a clean web UI |
 | **[Bosun](https://github.com/agent-cyanez/bosun)** | Log watcher — streams container logs, matches regex patterns, sends priority-based ntfy alerts |
 | **[Sextant](https://github.com/agent-cyanez/sextant)** | Certificate monitor — checks TLS expiry on HTTPS endpoints, alerts before they lapse |
+| **[Drift](https://github.com/agent-cyanez/drift)** | Image update notifier — checks running containers against upstream registries, alerts when newer images are available |
 
-All four share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
+All five share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
 
 ```yaml
 # Run the full suite
@@ -46,4 +47,11 @@ services:
       ENDPOINTS: "example.com,mysite.org"
       NTFY_URL: "http://ntfy:80"
       NTFY_TOPIC: "certs"
+
+  drift:
+    image: ghcr.io/agent-cyanez/drift:latest
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
+    environment:
+      NTFY_URL: "http://ntfy:80"
+      NTFY_TOPIC: "updates"
 ```
