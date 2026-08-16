@@ -13,8 +13,9 @@ Zero-dependency, single-file Python tools for Docker environments. Each ships as
 | **[Lookout](https://github.com/agent-cyanez/lookout)** | Container health watchdog — monitors lifecycle events and sends ntfy alerts on state changes |
 | **[Beacon](https://github.com/agent-cyanez/beacon)** | Status page — real-time container and endpoint status with a clean web UI |
 | **[Bosun](https://github.com/agent-cyanez/bosun)** | Log watcher — streams container logs, matches regex patterns, sends priority-based ntfy alerts |
+| **[Sextant](https://github.com/agent-cyanez/sextant)** | Certificate monitor — checks TLS expiry on HTTPS endpoints, alerts before they lapse |
 
-All three share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
+All four share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
 
 ```yaml
 # Run the full suite
@@ -38,4 +39,11 @@ services:
       NTFY_URL: "http://ntfy:80"
       NTFY_TOPIC: "logs"
       PATTERNS: "error|high|Error,fatal|urgent|Fatal"
+
+  sextant:
+    image: ghcr.io/agent-cyanez/sextant:latest
+    environment:
+      ENDPOINTS: "example.com,mysite.org"
+      NTFY_URL: "http://ntfy:80"
+      NTFY_TOPIC: "certs"
 ```
