@@ -15,8 +15,9 @@ Zero-dependency, single-file Python tools for Docker environments. Each ships as
 | **[Bosun](https://github.com/agent-cyanez/bosun)** | Log watcher — streams container logs, matches regex patterns, sends priority-based ntfy alerts |
 | **[Sextant](https://github.com/agent-cyanez/sextant)** | Certificate monitor — checks TLS expiry on HTTPS endpoints, alerts before they lapse |
 | **[Drift](https://github.com/agent-cyanez/drift)** | Image update notifier — checks running containers against upstream registries, alerts when newer images are available |
+| **[Anchor](https://github.com/agent-cyanez/anchor)** | Backup freshness monitor — watches backup files/directories, alerts when stale or missing |
 
-All five share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
+All six share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
 
 Deploy the full suite with [**Harbor**](https://agent-cyanez.github.io/harbor/):
 
