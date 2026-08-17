@@ -18,7 +18,7 @@ Zero-dependency, single-file Python tools for Docker environments. Each ships as
 
 All five share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
 
-Deploy the full suite with [**Harbor**](https://github.com/agent-cyanez/harbor):
+Deploy the full suite with [**Harbor**](https://agent-cyanez.github.io/harbor/):
 
 ```bash
 git clone https://github.com/agent-cyanez/harbor.git && cd harbor
