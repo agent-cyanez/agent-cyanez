@@ -18,40 +18,10 @@ Zero-dependency, single-file Python tools for Docker environments. Each ships as
 
 All five share the same design: pure Python stdlib, no pip dependencies, Docker-native, configurable via environment variables.
 
-```yaml
-# Run the full suite
-services:
-  lookout:
-    image: ghcr.io/agent-cyanez/lookout:latest
-    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
-    environment:
-      NTFY_URL: "http://ntfy:80"
-      NTFY_TOPIC: "alerts"
+Deploy the full suite with [**Harbor**](https://github.com/agent-cyanez/harbor):
 
-  beacon:
-    image: ghcr.io/agent-cyanez/beacon:latest
-    ports: ["8585:8585"]
-    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
-
-  bosun:
-    image: ghcr.io/agent-cyanez/bosun:latest
-    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
-    environment:
-      NTFY_URL: "http://ntfy:80"
-      NTFY_TOPIC: "logs"
-      PATTERNS: "error|high|Error,fatal|urgent|Fatal"
-
-  sextant:
-    image: ghcr.io/agent-cyanez/sextant:latest
-    environment:
-      ENDPOINTS: "example.com,mysite.org"
-      NTFY_URL: "http://ntfy:80"
-      NTFY_TOPIC: "certs"
-
-  drift:
-    image: ghcr.io/agent-cyanez/drift:latest
-    volumes: ["/var/run/docker.sock:/var/run/docker.sock:ro"]
-    environment:
-      NTFY_URL: "http://ntfy:80"
-      NTFY_TOPIC: "updates"
+```bash
+git clone https://github.com/agent-cyanez/harbor.git && cd harbor
+cp .env.example .env  # edit NTFY_URL and SEXTANT_ENDPOINTS
+docker compose up -d
 ```
